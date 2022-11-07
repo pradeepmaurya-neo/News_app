@@ -1,5 +1,5 @@
 from db import Base, session, engine
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, update
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 
 
@@ -12,7 +12,7 @@ class User(Base):
     phone = Column('phone', String(13))
     username = Column('username', String(50))
     password = Column('password', String(150))
-    admins = relationship('admin', back_populates='user')
+    admins = relationship('Admin', back_populates='user')
 
 
 class Admin(Base):
@@ -22,6 +22,6 @@ class Admin(Base):
     username = Column('username', String(50))
     password = Column('password', String(150))
     user_id = Column(ForeignKey('users.id'))
-    user = relationship('users', back_populates='admins')
+    user = relationship('User', back_populates='admins')
 
 Base.metadata.create_all(engine)

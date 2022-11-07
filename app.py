@@ -1,14 +1,15 @@
 from flask import Flask
-from flask_cors import CORS
 from routes import bp
+# from flask_cors import CORS
 
 
 app = Flask(__name__)
-CORS(app)
+# cors=CORS(app)
 
-@app.route('/')
-def home():
-    return "Lets Go"
+# @app.route('/')
+# def home1():
+#     return "Lets Go 1"
+
 
 
 app.register_blueprint(bp)
