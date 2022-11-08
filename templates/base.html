@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Post</title>
+        <script src="https://cdn.tiny.cloud/1/r55dmb7tylbap7uwxto0jlsvcn6z3uy29kieq6ujtxejkzyi/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>
+            tinymce.init({
+              selector: 'textarea#content',
+              menubar: false
+            });
+          </script>
+    </head>
+    <body>
+        <h3>Please Post here</h3>
+
+            <form action="" method="post">
+                {{form.hidden_tag()}}
+                <br>
+            {{form.title.label}}
+            {{form.title}}
+            <br>
+            {{form.content.label}}
+            {{form.content}}
+            <br>
+            {{form.submit}}
+            </form>
+
+         
+
+
+
+       
+    </body>
+</html>

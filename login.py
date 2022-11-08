@@ -6,7 +6,8 @@ from db import session
 login_bp = Blueprint('login', __name__)
 
 
-@login_bp.route('/login')
+# @login_bp.route('/login')
+
 def login():
     data = request.form
     passw = session.query(User).filter(User.username==data['username']).first()
