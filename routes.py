@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, request
+from flask import Blueprint, redirect, request, jsonify
 from models import User, Admin
 from werkzeug.security import generate_password_hash
 from db import session
@@ -6,8 +6,8 @@ from db import session
 bp = Blueprint('routes', __name__)
 
 
-@bp.route('/home', methods=['GET'])
-def home():
+@bp.route('/user/add', methods=['GET'])
+def add_user():
     data = request.form
     
     print(data['email'])
@@ -15,21 +15,25 @@ def home():
     user = User(name = data['name'],
         username=data['username'],
         password=generate_password_hash(data['password']),
-        email = data['email']
+        email = data['email'],
+        admin_id = data['admin_id']
         )
     session.add(user)
     session.commit()
-    return "data['name'],data['username'], generate_password_hash(data['password']),data['email']"
-    # return "success"
+    return jsonify({
+        "status": "success",
+        "meassage" : data
+    })
 
 
-@bp.route('/admin', methods=['GET'])
-def admin():
+@bp.route('/add/admin', methods=['GET'])
+def add_admin():
     data = request.form
-    data1 = dict(name = data['name'],
-        username=data['username'],
-        password=generate_password_hash(data['password']))
+    data1 = dict(name = data['name'],)
     user = Admin(**data1)
     session.add(user)
     session.commit()
-    return data1
+    return jsonify({
+        "status": "success",
+        "meassage" : data1
+    })
